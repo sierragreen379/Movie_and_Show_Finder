@@ -1,0 +1,43 @@
+#titleQuestion {
+    text-align: center;
+    margin: 20px auto;
+    display: block;
+    font-family: 'Fredoka One', sans-serif;
+    font-size: 38px;
+}
+
+#selectionBtns {
+    margin: 50px auto;
+    display: flex;
+    width: fit-content;
+    gap: 100px;
+    align-items: center;
+    justify-content: space-between;
+    text-decoration: none;
+}
+
+#movieBtn,
+#showBtn {
+    font-family: 'Fredoka One', sans-serif;
+    font-size: 30px;
+    width: 220px;
+    padding: 20px;
+    border-radius: 20px;
+    border: 2px double #B97828;
+    background-color: #B97828;
+    color: #fdc238;
+    cursor: pointer;
+}
+
+#movieBtn:hover,
+#showBtn:hover,
+#playBtn:hover {
+    border: 2px double #fdc238;
+}
+
+@media (max-width: 600px) {
+    #selectionBtns {
+        flex-direction: column;
+        gap: 50px;
+    }
+}

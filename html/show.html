@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>TV Show Finder</title>
+        <link rel="stylesheet" href="../css/style.css">
+        <script src="https://kit.fontawesome.com/43e89f9377.js" crossorigin="anonymous"></script>
+        <script defer src="../js/helpers.js"></script>
+        <script defer src="../js/show.js"></script>
+    </head>
+    <body>
+        <header>
+            <h1 id="appTitle">🍿Show Finder🍿</h1>
+        </header>
+        <form id="genreForm">
+            <label>Choose a genre:</label>
+            <select name="genres" id="genres">
+            </select>
+        </form>
+        <button id="playBtn">Let's Play!</button>
+        <div id="movieInfo">
+            <div id="moviePoster"></div>
+            <div id="movieText"></div>
+        </div>
+        <div id="likeOrDislikeBtns" hidden>
+            <button id="likeBtn"><i class="fa-solid fa-thumbs-up"></i></button>
+            <button id="dislikeBtn"><i class="fa-solid fa-thumbs-down"></i></button>
+        </div>
+    </body>
+</html>
