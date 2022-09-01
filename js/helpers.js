@@ -22,73 +22,73 @@ const showBtns = () => {
     btnDiv.removeAttribute("hidden");
 };
 
-// Clear the current movie from the screen
-const clearCurrentMovie = () => {
-    const moviePosterDiv = document.getElementById("moviePoster");
-    const movieTextDiv = document.getElementById("movieText");
-    moviePosterDiv.innerHTML = "";
-    movieTextDiv.innerHTML = "";
+// Clear the current media from the screen
+const clearCurrentMedia = () => {
+    const mediaPosterDiv = document.getElementById("mediaPoster");
+    const mediaTextDiv = document.getElementById("mediaText");
+    mediaPosterDiv.innerHTML = "";
+    mediaTextDiv.innerHTML = "";
 }
 
-// After liking a movie, clears the current movie from the screen and gets another random movie
-const likeMovie = () => {
-    clearCurrentMovie();
-    showRandomMovie();
+// After liking a movie/show, clears the current media from the screen and gets another random movie/show
+const likeMedia = () => {
+    clearCurrentMedia();
+    showRandomMedia();
 };
 
-// After disliking a movie, clears the current movie from the screen and gets another random movie
-const dislikeMovie = () => {
-    clearCurrentMovie();
-    showRandomMovie();
+// After disliking a movie/show, clears the current media from the screen and gets another random movie/show
+const dislikeMedia = () => {
+    clearCurrentMedia();
+    showRandomMedia();
 };
 
-// Create HTML for movie poster
-const createMoviePoster = (posterPath) => {
-    const moviePosterUrl = `https://image.tmdb.org/t/p/original/${posterPath}`;
+// Create HTML for media poster
+const createMediaPoster = (posterPath) => {
+    const mediaPosterUrl = `https://image.tmdb.org/t/p/original/${posterPath}`;
 
     const posterImg = document.createElement("img");
-    posterImg.setAttribute("src", moviePosterUrl);
-    posterImg.setAttribute("id", "moviePoster");
+    posterImg.setAttribute("src", mediaPosterUrl);
+    posterImg.setAttribute("id", "mediaPoster");
 
     return posterImg;
 };
 
-// Create HTML for movie title
-const createMovieTitle = (title) => {
+// Create HTML for media title
+const createMediaTitle = (title) => {
     const titleHeader = document.createElement("h1");
-    titleHeader.setAttribute("id", "movieTitle");
+    titleHeader.setAttribute("id", "mediaTitle");
     titleHeader.innerHTML = title;
 
     return titleHeader;
 };
 
-// Create HTML for movie overview
-const createMovieOverview = (overview) => {
+// Create HTML for media overview
+const createMediaOverview = (overview) => {
     const overviewParagraph = document.createElement("p");
-    overviewParagraph.setAttribute("id", "movieOverview");
+    overviewParagraph.setAttribute("id", "mediaOverview");
     overviewParagraph.innerHTML = overview;
 
     return overviewParagraph;
 };
 
-// Returns a random movie from the first page of movies
-const getRandomMovie = (movies) => {
-    const randomIndex = Math.floor(Math.random() * movies.length);
-    const randomMovie = movies[randomIndex];
-    return randomMovie;
+// Returns a random media item from the first page of media
+const getRandomMedia = (media) => {
+    const randomIndex = Math.floor(Math.random() * media.length);
+    const randomMedia = media[randomIndex];
+    return randomMedia;
 };
 
 // Uses the DOM to create HTML to display the movie
 const displayMovie = (movieInfo) => {
-    const moviePosterDiv = document.getElementById("moviePoster");
-    const movieTextDiv = document.getElementById("movieText");
+    const moviePosterDiv = document.getElementById("mediaPoster");
+    const movieTextDiv = document.getElementById("mediaText");
     const likeBtn = document.getElementById("likeBtn");
     const dislikeBtn = document.getElementById("dislikeBtn");
 
-    // Create HTML content containing movie info
-    const moviePoster = createMoviePoster(movieInfo.poster_path);
-    const titleHeader = createMovieTitle(movieInfo.title);
-    const overviewText = createMovieOverview(movieInfo.overview);
+    // Create HTML content containing media info
+    const moviePoster = createMediaPoster(movieInfo.poster_path);
+    const titleHeader = createMediaTitle(movieInfo.title);
+    const overviewText = createMediaOverview(movieInfo.overview);
 
     // Append title, poster, and overview to page
     moviePosterDiv.appendChild(moviePoster);
@@ -96,6 +96,28 @@ const displayMovie = (movieInfo) => {
     movieTextDiv.appendChild(overviewText);
 
     showBtns();
-    likeBtn.onclick = likeMovie;
-    dislikeBtn.onclick = dislikeMovie;
+    likeBtn.onclick = likeMedia;
+    dislikeBtn.onclick = dislikeMedia;
+};
+
+// Uses the DOM to create HTML to display the TV show
+const displayTvShow = (tvInfo) => {
+    const tvPosterDiv = document.getElementById("mediaPoster");
+    const tvTextDiv = document.getElementById("mediaText");
+    const likeBtn = document.getElementById("likeBtn");
+    const dislikeBtn = document.getElementById("dislikeBtn");
+
+    // Create HTML content containing media info
+    const tvPoster = createMediaPoster(tvInfo.poster_path);
+    const titleHeader = createMediaTitle(tvInfo.name);
+    const overviewText = createMediaOverview(tvInfo.overview);
+
+    // Append title, poster, and overview to page
+    tvPosterDiv.appendChild(tvPoster);
+    tvTextDiv.appendChild(titleHeader);
+    tvTextDiv.appendChild(overviewText);
+
+    showBtns();
+    likeBtn.onclick = likeMedia;
+    dislikeBtn.onclick = dislikeMedia;
 };

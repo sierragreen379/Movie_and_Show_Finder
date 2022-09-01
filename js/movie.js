@@ -21,7 +21,8 @@ const getGenres = async () => {
 const getMovies = async () => {
     const selectedGenre = getSelectedGenre();
     const discoverMovieEndpoint = "/discover/movie";
-    const requestParams = `?api_key=${tmdbKey}&with_genres=${selectedGenre}`;
+    const randomPage = Math.floor(Math.random() * 1000 + 1);
+    const requestParams = `?api_key=${tmdbKey}&with_genres=${selectedGenre}&page=${randomPage}`;
     const urlToFetch = `${tmdbBaseUrl}${discoverMovieEndpoint}${requestParams}`;
     try {
         const response = await fetch(urlToFetch);
@@ -43,7 +44,7 @@ const getMovieInfo = async (movie) => {
     try {
         const response = await fetch(urlToFetch);
         if (response.ok) {
-            const movieInfo = response.json();
+            const movieInfo = await response.json();
             return movieInfo;
         }
     } catch (error) {
@@ -52,16 +53,16 @@ const getMovieInfo = async (movie) => {
 }
 
 // Gets a list of movies and ultimately displays the info of a random movie from the list
-const showRandomMovie = async () => {
-    const movieInfo = document.getElementById("movieInfo");
+const showRandomMedia = async () => {
+    const movieInfo = document.getElementById("mediaInfo");
     if (movieInfo.childNodes.length > 0) {
-        clearCurrentMovie();
-    };
+        clearCurrentMedia();
+    }
     const movies = await getMovies();
-    const randomMovie = getRandomMovie(movies);
+    const randomMovie = getRandomMedia(movies);
     const info = await getMovieInfo(randomMovie);
     displayMovie(info);
 }
 
 getGenres().then(populateGenreDropdown);
-playBtn.onclick = showRandomMovie;
+playBtn.onclick = showRandomMedia;

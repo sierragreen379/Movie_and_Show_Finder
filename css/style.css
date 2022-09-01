@@ -22,38 +22,38 @@ body {
     font-family: 'Fredoka One', sans-serif;
 }
 
-#movieInfo {
+#mediaInfo {
     width: 65%;
     margin: 32px auto;
 }
 
-#movieInfo:after {
+#mediaInfo:after {
     content: "";
     display: table;
     clear: both;
 }
 
-#moviePoster,
-#movieText {
+#mediaPoster,
+#mediaText {
     width: 50%;
     float: left;
 }
 
-img#moviePoster {
+img#mediaPoster {
     width: 100%;
     height: auto;
     display: block;
     margin: auto;
 }
 
-#movieText {
+#mediaText {
     font-family: 'Questrial';
     color: #FEFBEA;
     line-height: 1.25;
 }
 
-#movieTitle,
-#movieOverview {
+#mediaTitle,
+#mediaOverview {
     padding: 32px;
 }
 
