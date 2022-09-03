@@ -24,7 +24,6 @@ const getTvShows = async () => {
     const randomPage = Math.floor(Math.random() * 296 + 1);
     const requestParams = `?api_key=${tmdbKey}&with_genres=${selectedGenre}&page=${randomPage}`;
     const urlToFetch = `${tmdbBaseUrl}${discoverTvShowEndpoint}${requestParams}`;
-    console.log(urlToFetch);
     try {
         const response = await fetch(urlToFetch);
         if (response.ok) {
@@ -38,6 +37,7 @@ const getTvShows = async () => {
 }
 
 const getTvShowInfo = async (show) => {
+    console.log(show);
     const showId = show.id;
     const tvShowEndpoint = `/tv/${showId}`;
     const requestParams = `?api_key=${tmdbKey}`;
@@ -60,6 +60,7 @@ const showRandomMedia = async () => {
         clearCurrentMedia();
     }
     const shows = await getTvShows();
+    console.log(shows);
     const randomShow = getRandomMedia(shows);
     const info = await getTvShowInfo(randomShow);
     displayTvShow(info);

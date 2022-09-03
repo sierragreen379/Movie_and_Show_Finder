@@ -44,12 +44,17 @@ const dislikeMedia = () => {
 
 // Create HTML for media poster
 const createMediaPoster = (posterPath) => {
-    const mediaPosterUrl = `https://image.tmdb.org/t/p/original/${posterPath}`;
-
-    const posterImg = document.createElement("img");
-    posterImg.setAttribute("src", mediaPosterUrl);
+    let posterImg;
+    if (posterPath == null) {
+        const missingImgText = "Image Not Available";
+        posterImg = document.createElement("h2");
+        posterImg.innerHTML = missingImgText;
+    } else {
+        const mediaPosterUrl = `https://image.tmdb.org/t/p/original/${posterPath}`;
+        posterImg = document.createElement("img");
+        posterImg.setAttribute("src", mediaPosterUrl);
+    }
     posterImg.setAttribute("id", "mediaPoster");
-
     return posterImg;
 }
 
@@ -65,7 +70,7 @@ const createMediaTitle = (title) => {
 // Create HTML for media release date
 const createMediaDate = (date) => {
     const year = date.slice(0, 4);
-    const mediaDate = document.createElement("h2");
+    const mediaDate = document.createElement("h3");
     mediaDate.setAttribute("id", "mediaDate");
     mediaDate.innerHTML = year;
 
@@ -75,7 +80,7 @@ const createMediaDate = (date) => {
 // Create HTML for number of seasons in the tv show
 const createTvNumOfSeasons = (seasons) => {
     let seasonsWord = "seasons"
-    const tvNumOfSeasons = document.createElement("h2");
+    const tvNumOfSeasons = document.createElement("h3");
     tvNumOfSeasons.setAttribute("id", "tvNumOfSeasons");
     if (seasons == 1) {
         seasonsWord = "season"
