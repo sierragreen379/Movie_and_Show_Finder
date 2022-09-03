@@ -21,9 +21,10 @@ const getGenres = async () => {
 const getTvShows = async () => {
     const selectedGenre = getSelectedGenre();
     const discoverTvShowEndpoint = "/discover/tv";
-    const randomPage = Math.floor(Math.random() * 304 + 1);
+    const randomPage = Math.floor(Math.random() * 296 + 1);
     const requestParams = `?api_key=${tmdbKey}&with_genres=${selectedGenre}&page=${randomPage}`;
     const urlToFetch = `${tmdbBaseUrl}${discoverTvShowEndpoint}${requestParams}`;
+    console.log(urlToFetch);
     try {
         const response = await fetch(urlToFetch);
         if (response.ok) {

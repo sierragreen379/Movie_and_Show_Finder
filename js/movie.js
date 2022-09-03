@@ -21,9 +21,10 @@ const getGenres = async () => {
 const getMovies = async () => {
     const selectedGenre = getSelectedGenre();
     const discoverMovieEndpoint = "/discover/movie";
-    const randomPage = Math.floor(Math.random() * 1000 + 1);
+    const randomPage = Math.floor(Math.random() * 390 + 1);
     const requestParams = `?api_key=${tmdbKey}&with_genres=${selectedGenre}&page=${randomPage}`;
     const urlToFetch = `${tmdbBaseUrl}${discoverMovieEndpoint}${requestParams}`;
+    console.log(urlToFetch);
     try {
         const response = await fetch(urlToFetch);
         if (response.ok) {

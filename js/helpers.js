@@ -67,13 +67,12 @@ const createMediaDate = (date) => {
     const year = date.slice(0, 4);
     const mediaDate = document.createElement("h2");
     mediaDate.setAttribute("id", "mediaDate");
-
     mediaDate.innerHTML = year;
 
     return mediaDate;
 }
 
-// Create HTML for tv show number of seasons
+// Create HTML for number of seasons in the tv show
 const createTvNumOfSeasons = (seasons) => {
     let seasonsWord = "seasons"
     const tvNumOfSeasons = document.createElement("h2");
@@ -144,8 +143,8 @@ const displayTvShow = (tvInfo) => {
     // Append title, poster, date, number of seasons, and overview to page
     tvPosterDiv.appendChild(tvPoster);
     tvTextDiv.appendChild(titleHeader);
-    tvExtraInfoDiv.appendChild(tvDate);
-    tvExtraInfoDiv.appendChild(tvNumOfSeasons);
+    tvTextDiv.appendChild(tvDate);
+    tvTextDiv.appendChild(tvNumOfSeasons);
     tvTextDiv.appendChild(overviewText);
 
     showBtns();
