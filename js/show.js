@@ -28,7 +28,6 @@ const getTvShows = async () => {
         const response = await fetch(urlToFetch);
         if (response.ok) {
             const jsonResponse = await response.json();
-            console.log(jsonResponse);
             const shows = jsonResponse.results;
             return shows;
         }

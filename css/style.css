@@ -52,9 +52,17 @@ img#mediaPoster {
     line-height: 1.25;
 }
 
+#mediaDate,
+#tvNumOfSeasons {
+    font-size: 18px;
+    color: #fefbead2;
+}
+
 #mediaTitle,
-#mediaOverview {
-    padding: 32px;
+#mediaOverview,
+#mediaDate,
+#tvNumOfSeasons {
+    padding: 0px 32px;
 }
 
 #playBtn {

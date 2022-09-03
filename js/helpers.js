@@ -8,19 +8,19 @@ const populateGenreDropdown = (genres) => {
         option.text = genre.name;
         select.appendChild(option);
     }
-};
+}
 
 // Returns the current genre selection from the dropdown menu
 const getSelectedGenre = () => {
     const selectedGenre = document.getElementById("genres").value;
     return selectedGenre;
-};
+}
 
 // Displays the like and dislike buttons on the page
 const showBtns = () => {
     const btnDiv = document.getElementById("likeOrDislikeBtns");
     btnDiv.removeAttribute("hidden");
-};
+}
 
 // Clear the current media from the screen
 const clearCurrentMedia = () => {
@@ -34,13 +34,13 @@ const clearCurrentMedia = () => {
 const likeMedia = () => {
     clearCurrentMedia();
     showRandomMedia();
-};
+}
 
 // After disliking a movie/show, clears the current media from the screen and gets another random movie/show
 const dislikeMedia = () => {
     clearCurrentMedia();
     showRandomMedia();
-};
+}
 
 // Create HTML for media poster
 const createMediaPoster = (posterPath) => {
@@ -51,7 +51,7 @@ const createMediaPoster = (posterPath) => {
     posterImg.setAttribute("id", "mediaPoster");
 
     return posterImg;
-};
+}
 
 // Create HTML for media title
 const createMediaTitle = (title) => {
@@ -60,7 +60,31 @@ const createMediaTitle = (title) => {
     titleHeader.innerHTML = title;
 
     return titleHeader;
-};
+}
+
+// Create HTML for media release date
+const createMediaDate = (date) => {
+    const year = date.slice(0, 4);
+    const mediaDate = document.createElement("h2");
+    mediaDate.setAttribute("id", "mediaDate");
+
+    mediaDate.innerHTML = year;
+
+    return mediaDate;
+}
+
+// Create HTML for tv show number of seasons
+const createTvNumOfSeasons = (seasons) => {
+    let seasonsWord = "seasons"
+    const tvNumOfSeasons = document.createElement("h2");
+    tvNumOfSeasons.setAttribute("id", "tvNumOfSeasons");
+    if (seasons == 1) {
+        seasonsWord = "season"
+    }
+    tvNumOfSeasons.innerHTML = `${seasons} ${seasonsWord}`;
+
+    return tvNumOfSeasons;
+}
 
 // Create HTML for media overview
 const createMediaOverview = (overview) => {
@@ -69,14 +93,14 @@ const createMediaOverview = (overview) => {
     overviewParagraph.innerHTML = overview;
 
     return overviewParagraph;
-};
+}
 
 // Returns a random media item from the first page of media
 const getRandomMedia = (media) => {
     const randomIndex = Math.floor(Math.random() * media.length);
     const randomMedia = media[randomIndex];
     return randomMedia;
-};
+}
 
 // Uses the DOM to create HTML to display the movie
 const displayMovie = (movieInfo) => {
@@ -88,36 +112,43 @@ const displayMovie = (movieInfo) => {
     // Create HTML content containing media info
     const moviePoster = createMediaPoster(movieInfo.poster_path);
     const titleHeader = createMediaTitle(movieInfo.title);
+    const movieDate = createMediaDate(movieInfo.release_date);
     const overviewText = createMediaOverview(movieInfo.overview);
 
     // Append title, poster, and overview to page
     moviePosterDiv.appendChild(moviePoster);
     movieTextDiv.appendChild(titleHeader);
+    movieTextDiv.appendChild(movieDate);
     movieTextDiv.appendChild(overviewText);
 
     showBtns();
     likeBtn.onclick = likeMedia;
     dislikeBtn.onclick = dislikeMedia;
-};
+}
 
 // Uses the DOM to create HTML to display the TV show
 const displayTvShow = (tvInfo) => {
     const tvPosterDiv = document.getElementById("mediaPoster");
     const tvTextDiv = document.getElementById("mediaText");
+    const tvExtraInfoDiv = document.getElementById("mediaExtraInfo");
     const likeBtn = document.getElementById("likeBtn");
     const dislikeBtn = document.getElementById("dislikeBtn");
 
     // Create HTML content containing media info
     const tvPoster = createMediaPoster(tvInfo.poster_path);
     const titleHeader = createMediaTitle(tvInfo.name);
+    const tvDate = createMediaDate(tvInfo.first_air_date);
+    const tvNumOfSeasons = createTvNumOfSeasons(tvInfo.number_of_seasons);
     const overviewText = createMediaOverview(tvInfo.overview);
 
-    // Append title, poster, and overview to page
+    // Append title, poster, date, number of seasons, and overview to page
     tvPosterDiv.appendChild(tvPoster);
     tvTextDiv.appendChild(titleHeader);
+    tvExtraInfoDiv.appendChild(tvDate);
+    tvExtraInfoDiv.appendChild(tvNumOfSeasons);
     tvTextDiv.appendChild(overviewText);
 
     showBtns();
     likeBtn.onclick = likeMedia;
     dislikeBtn.onclick = dislikeMedia;
-};
+}
